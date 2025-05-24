@@ -1,0 +1,2 @@
+D:/Project/Kampung Pintar/kampung_pintar/android/app/.cxx/Debug/t6r5j2pm/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Project/Kampung Pintar/kampung_pintar/android/app/.cxx/Debug/t6r5j2pm/arm64-v8a/CMakeFiles/rebuild_cache.dir
