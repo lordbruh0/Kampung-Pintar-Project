@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_navbar_admin.dart';
+import '../../widgets/admin/bottom_navbar_admin.dart';
 
 class KelolaWargaPage extends StatefulWidget {
   const KelolaWargaPage({super.key});

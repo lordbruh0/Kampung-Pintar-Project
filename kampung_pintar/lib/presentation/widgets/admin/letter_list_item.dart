@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/models/letter_application.dart';
+import '../../../../core/models/letter_application.dart';
 
 class LetterListItem extends StatelessWidget {
   final LetterApplication letter;

@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
-import '../../../core/models/transaction.dart';
+import '../../../../core/models/dues.dart';
 
-class AddTransactionModal extends StatefulWidget {
-  final Function(Transaction) onAdd;
+class AddDuesModal extends StatefulWidget {
+  final Function(Dues) onAdd;
   final VoidCallback onCancel;
 
-  const AddTransactionModal({
+  const AddDuesModal({
     super.key,
     required this.onAdd,
     required this.onCancel,
   });
 
   @override
-  State<AddTransactionModal> createState() => _AddTransactionModalState();
+  State<AddDuesModal> createState() => _AddDuesModalState();
 }
 
-class _AddTransactionModalState extends State<AddTransactionModal> {
+class _AddDuesModalState extends State<AddDuesModal> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
-  final _nikController = TextEditingController();
+  final _nominalController = TextEditingController();
   String _selectedDate = 'Tanggal / Bulan / Tahun';
-  TransactionType _transactionType = TransactionType.income;
 
   @override
   void dispose() {
     _nameController.dispose();
-    _nikController.dispose();
+    _nominalController.dispose();
     super.dispose();
   }
 
@@ -36,7 +35,7 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
       firstDate: DateTime(2020),
       lastDate: DateTime(2025),
     );
-    
+
     if (picked != null) {
       setState(() {
         _selectedDate = '${picked.day}/${picked.month}/${picked.year}';
@@ -64,7 +63,7 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Add Transaksi',
+                    'Tambah Iuran',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -82,50 +81,55 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Nama'),
+                    const Text('Nama Iuran'),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _nameController,
                       decoration: InputDecoration(
-                        hintText: 'Masukkan Nama Warga',
+                        hintText: 'Masukkan Nama Iuran',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Nama tidak boleh kosong';
+                          return 'Nama iuran tidak boleh kosong';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
-                    const Text('NIK'),
+                    const Text('Nominal yang Diperlukan'),
                     const SizedBox(height: 8),
                     TextFormField(
-                      controller: _nikController,
+                      controller: _nominalController,
                       decoration: InputDecoration(
-                        hintText: 'Masukkan NIK Warga',
+                        hintText: 'Masukkan Nominal',
+                        prefixText: 'Rp ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                       ),
+                      keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'NIK tidak boleh kosong';
+                          return 'Nominal tidak boleh kosong';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
-                    const Text('Tanggal'),
+                    const Text('Tanggal Mulai Iuran'),
                     const SizedBox(height: 8),
                     InkWell(
                       onTap: () => _selectDate(context),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(8),
@@ -136,9 +140,39 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                             Text(
                               _selectedDate,
                               style: TextStyle(
-                                color: _selectedDate != 'Tanggal / Bulan / Tahun'
-                                    ? Colors.black
-                                    : Colors.grey,
+                                color:
+                                    _selectedDate != 'Tanggal / Bulan / Tahun'
+                                        ? Colors.black
+                                        : Colors.grey,
+                              ),
+                            ),
+                            const Icon(Icons.calendar_today, size: 16),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Tanggal Akhir Iuran'),
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () => _selectDate(context),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              _selectedDate,
+                              style: TextStyle(
+                                color:
+                                    _selectedDate != 'Tanggal / Bulan / Tahun'
+                                        ? Colors.black
+                                        : Colors.grey,
                               ),
                             ),
                             const Icon(Icons.calendar_today, size: 16),
@@ -155,13 +189,18 @@ class _AddTransactionModalState extends State<AddTransactionModal> {
                               if (_formKey.currentState!.validate() &&
                                   _selectedDate != 'Tanggal / Bulan / Tahun') {
                                 widget.onAdd(
-                                  Transaction(
-                                    id: DateTime.now().millisecondsSinceEpoch.toString(),
+                                  Dues(
+                                    id: DateTime.now()
+                                        .millisecondsSinceEpoch
+                                        .toString(),
                                     name: _nameController.text,
                                     date: _selectedDate,
-                                    amount: 25000, // Default amount for demo
-                                    type: _transactionType,
-                                    description: '2 Meter Pasti - RT 1 RW 8', // Default description for demo
+                                    amount: double.tryParse(
+                                            _nominalController.text) ??
+                                        0,
+                                    isPaid: false,
+                                    description:
+                                        'Budi Santoso\n2 Meter Pasti - RT 1 RW 8', // Default description for demo
                                   ),
                                 );
                               }

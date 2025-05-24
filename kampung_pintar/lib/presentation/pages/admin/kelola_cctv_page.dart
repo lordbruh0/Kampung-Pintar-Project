@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_navbar_admin.dart';
-import '../../widgets/cctv_grid_item.dart';
-import '../../widgets/cctv_player.dart';
+import '../../widgets/admin/bottom_navbar_admin.dart';
+import '../../widgets/admin/cctv_grid_item.dart';
+import '../../widgets/admin/cctv_player.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/models/cctv.dart';
 
@@ -82,18 +82,26 @@ class _KelolaCctvPageState extends State<KelolaCctvPage> {
       //         )
       //       : null,
       // ),
-      body: _isViewingCctv
-          ? _buildCctvViewPage()
-          : _buildCctvListPage(),
+      body: _isViewingCctv ? _buildCctvViewPage() : _buildCctvListPage(),
       bottomNavigationBar: BottomNavbarAdmin(
         currentIndex: 2,
         onTap: (index) {
           switch (index) {
-            case 0: Navigator.pushReplacementNamed(context, '/admin/home'); break;
-            case 1: Navigator.pushReplacementNamed(context, '/admin/keuangan'); break;
-            case 2: Navigator.pushReplacementNamed(context, '/admin/cctv'); break;
-            case 3: Navigator.pushReplacementNamed(context, '/admin/surat'); break;
-            case 4: Navigator.pushReplacementNamed(context, '/admin/laporan'); break;
+            case 0:
+              Navigator.pushReplacementNamed(context, '/admin/home');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/admin/keuangan');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/admin/cctv');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/admin/surat');
+              break;
+            case 4:
+              Navigator.pushReplacementNamed(context, '/admin/laporan');
+              break;
           }
         },
       ),
@@ -137,7 +145,7 @@ class _KelolaCctvPageState extends State<KelolaCctvPage> {
 
   Widget _buildCctvViewPage() {
     if (_selectedCctv == null) return const SizedBox.shrink();
-    
+
     return Column(
       children: [
         const Padding(

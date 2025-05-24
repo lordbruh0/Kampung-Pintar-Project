@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/models/transaction.dart';
+import '../../../../core/models/transaction.dart';
 
 class TransactionListItem extends StatelessWidget {
   final Transaction transaction;
@@ -80,7 +80,7 @@ class TransactionListItem extends StatelessWidget {
   Widget _buildStatusIndicator(TransactionType type) {
     IconData icon;
     Color color;
-    
+
     switch (type) {
       case TransactionType.income:
         icon = Icons.check_circle;
@@ -95,7 +95,7 @@ class TransactionListItem extends StatelessWidget {
         color = Colors.orange;
         break;
     }
-    
+
     return Icon(
       icon,
       color: color,

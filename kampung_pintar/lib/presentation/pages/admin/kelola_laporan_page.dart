@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_navbar_admin.dart';
-import '../../widgets/report_list_item.dart';
-import '../../widgets/filter_modal.dart';
-import '../../widgets/report_detail.dart';
-import '../../widgets/escalation_form.dart';
+import '../../widgets/admin/bottom_navbar_admin.dart';
+import '../../widgets/admin/report_list_item.dart';
+import '../../widgets/admin/filter_modal.dart';
+import '../../widgets/admin/report_detail.dart';
+import '../../widgets/admin/escalation_form.dart';
 import '../../../core/constants/app_colors.dart';
 
 class KelolaLaporanPage extends StatefulWidget {
@@ -16,7 +16,7 @@ class KelolaLaporanPage extends StatefulWidget {
 class _KelolaCctvPageState extends State<KelolaLaporanPage> {
   int _currentPageIndex = 0;
   Map<String, dynamic>? _selectedReport;
-  
+
   final List<Map<String, dynamic>> _reports = [
     {
       'title': 'Suki Liar Berkeliaran',
@@ -64,7 +64,8 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
         onApply: (filters) {
           // Apply filters logic
           Navigator.pop(context);
-        }, onCancel: () {  },
+        },
+        onCancel: () {},
       ),
     );
   }
@@ -103,20 +104,20 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _currentPageIndex <= 1 
+          _currentPageIndex <= 1
               ? 'Kelola Data Warga - Show Data'
-              : _currentPageIndex == 4 
+              : _currentPageIndex == 4
                   ? 'Form Eskalasi'
                   : 'Detail Laporan',
         ),
         centerTitle: true,
-        leading: _currentPageIndex >= 2 
+        leading: _currentPageIndex >= 2
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: _goBack,
               )
             : null,
-        actions: _currentPageIndex <= 1 
+        actions: _currentPageIndex <= 1
             ? [
                 IconButton(
                   icon: const Icon(Icons.filter_list),
@@ -130,10 +131,10 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
         children: [
           // Page 0: Report List
           _buildReportListPage(),
-          
+
           // Page 1: Filter Page (shown as modal)
           Container(),
-          
+
           // Page 2: Report Detail
           if (_selectedReport != null)
             ReportDetail(
@@ -146,7 +147,7 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
               },
               showProcessButton: true,
             ),
-            
+
           // Page 3: Report Detail with Complete Button
           if (_selectedReport != null)
             ReportDetail(
@@ -159,7 +160,7 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
               },
               showCompleteButton: true,
             ),
-            
+
           // Page 4: Escalation Form
           EscalationForm(
             onSubmit: (data) {
@@ -176,11 +177,21 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
         currentIndex: 2,
         onTap: (index) {
           switch (index) {
-            case 0: Navigator.pushReplacementNamed(context, '/admin/home'); break;
-            case 1: Navigator.pushReplacementNamed(context, '/admin/keuangan'); break;
-            case 2: Navigator.pushReplacementNamed(context, '/admin/cctv'); break;
-            case 3: Navigator.pushReplacementNamed(context, '/admin/surat'); break;
-            case 4: Navigator.pushReplacementNamed(context, '/admin/laporan'); break;
+            case 0:
+              Navigator.pushReplacementNamed(context, '/admin/home');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/admin/keuangan');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/admin/cctv');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/admin/surat');
+              break;
+            case 4:
+              Navigator.pushReplacementNamed(context, '/admin/laporan');
+              break;
           }
         },
       ),
@@ -211,7 +222,8 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.blue[100],
                   borderRadius: BorderRadius.circular(20),
@@ -226,14 +238,16 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
                       onTap: () {
                         // Remove filter
                       },
-                      child: const Icon(Icons.close, size: 16, color: Colors.blue),
+                      child:
+                          const Icon(Icons.close, size: 16, color: Colors.blue),
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.blue[100],
                   borderRadius: BorderRadius.circular(20),
@@ -248,7 +262,8 @@ class _KelolaCctvPageState extends State<KelolaLaporanPage> {
                       onTap: () {
                         // Remove filter
                       },
-                      child: const Icon(Icons.close, size: 16, color: Colors.blue),
+                      child:
+                          const Icon(Icons.close, size: 16, color: Colors.blue),
                     ),
                   ],
                 ),

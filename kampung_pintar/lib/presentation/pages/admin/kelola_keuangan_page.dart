@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_navbar_admin.dart';
-import '../../widgets/transaction_list_item.dart';
-import '../../widgets/add_transaction_modal.dart';
-import '../../widgets/cash_settings_modal.dart';
-import '../../widgets/add_dues_modal.dart';
-import '../../widgets/filter_modal.dart';
-import '../../widgets/summary_card.dart';
-import '../../widgets/menu_button.dart';
+import '../../widgets/admin/bottom_navbar_admin.dart';
+import '../../widgets/admin/transaction_list_item.dart';
+import '../../widgets/admin/add_transaction_modal.dart';
+import '../../widgets/admin/cash_settings_modal.dart';
+import '../../widgets/admin/add_dues_modal.dart';
+import '../../widgets/admin/filter_modal.dart';
+import '../../widgets/admin/summary_card.dart';
+import '../../widgets/admin/menu_button.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/models/transaction.dart';
 import '../../../core/models/dues.dart';
@@ -20,19 +20,20 @@ class KelolaKeuanganPage extends StatefulWidget {
 
 class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
   // Current view state
-  int _currentView = 0; // 0: Dashboard, 1: Cash List, 2: Dues List, 3: Arrears List, 4: Success
-  
+  int _currentView =
+      0; // 0: Dashboard, 1: Cash List, 2: Dues List, 3: Arrears List, 4: Success
+
   // Modal states
   bool _showAddTransactionModal = false;
   bool _showCashSettingsModal = false;
   bool _showAddDuesModal = false;
   bool _showFilterModal = false;
-  
+
   // Financial data
   double _balance = 12500000;
   double _income = 5000000;
   double _expense = 2500000;
-  
+
   // Sample transaction data
   final List<Transaction> _transactions = [
     Transaction(
@@ -68,7 +69,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
       description: '2 Meter Pasti - RT 1 RW 8',
     ),
   ];
-  
+
   // Sample dues data
   final List<Dues> _duesList = [
     Dues(
@@ -104,7 +105,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
       description: '2 Meter Pasti - RT 1 RW 8',
     ),
   ];
-  
+
   // Sample arrears data
   final List<Dues> _arrearsList = [
     Dues(
@@ -174,7 +175,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
       _showAddDuesModal = false;
       _showFilterModal = false;
     });
-    
+
     // Automatically go back to dashboard after 2 seconds
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
@@ -270,14 +271,14 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
         children: [
           // Main content based on current view
           _buildMainContent(),
-          
+
           // Modals
           if (_showAddTransactionModal)
             AddTransactionModal(
               onAdd: _addTransaction,
               onCancel: _toggleAddTransactionModal,
             ),
-            
+
           if (_showCashSettingsModal)
             CashSettingsModal(
               onSave: (settings) {
@@ -287,13 +288,13 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
               },
               onCancel: _toggleCashSettingsModal,
             ),
-            
+
           if (_showAddDuesModal)
             AddDuesModal(
               onAdd: _addDues,
               onCancel: _toggleAddDuesModal,
             ),
-            
+
           if (_showFilterModal)
             FilterModal(
               onApply: (filters) {
@@ -318,11 +319,21 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
         currentIndex: 1,
         onTap: (index) {
           switch (index) {
-            case 0: Navigator.pushReplacementNamed(context, '/admin/home'); break;
-            case 1: Navigator.pushReplacementNamed(context, '/admin/keuangan'); break;
-            case 2: Navigator.pushReplacementNamed(context, '/admin/cctv'); break;
-            case 3: Navigator.pushReplacementNamed(context, '/admin/surat'); break;
-            case 4: Navigator.pushReplacementNamed(context, '/admin/laporan'); break;
+            case 0:
+              Navigator.pushReplacementNamed(context, '/admin/home');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/admin/keuangan');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/admin/cctv');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/admin/surat');
+              break;
+            case 4:
+              Navigator.pushReplacementNamed(context, '/admin/laporan');
+              break;
           }
         },
       ),
@@ -439,9 +450,9 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
               ),
             ),
           ),
-          
+
           const SizedBox(height: 24),
-          
+
           // Menu Buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -548,7 +559,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
             ),
           ),
         ),
-        
+
         // Transactions list
         Expanded(
           child: ListView.builder(
@@ -591,7 +602,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
             ),
           ),
         ),
-        
+
         // Dues list
         Expanded(
           child: ListView.builder(
@@ -604,7 +615,9 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
                   name: _duesList[index].name,
                   date: _duesList[index].date,
                   amount: _duesList[index].amount,
-                  type: _duesList[index].isPaid ? TransactionType.income : TransactionType.pending,
+                  type: _duesList[index].isPaid
+                      ? TransactionType.income
+                      : TransactionType.pending,
                   description: _duesList[index].description,
                 ),
                 onTap: () {
@@ -638,7 +651,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
             ),
           ),
         ),
-        
+
         // Filter chips
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -661,7 +674,7 @@ class _KelolaKeuanganPageState extends State<KelolaKeuanganPage> {
             ),
           ),
         ),
-        
+
         // Arrears list
         Expanded(
           child: ListView.builder(

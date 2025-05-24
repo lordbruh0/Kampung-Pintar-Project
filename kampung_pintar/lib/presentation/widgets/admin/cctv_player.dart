@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/models/cctv.dart';
-import '../../../core/constants/app_colors.dart';
+import '../../../../core/models/cctv.dart';
+import '../../../../core/constants/app_colors.dart';
 
 class CctvPlayer extends StatefulWidget {
   final CCTV cctv;
@@ -45,8 +45,9 @@ class _CctvPlayerState extends State<CctvPlayer> {
     int hour = 23;
     int minute = ((_currentPosition * 60) % 60).floor();
     int second = ((_currentPosition * 3600) % 60).floor();
-    
-    _currentTime = "${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
+
+    _currentTime =
+        "${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
   }
 
   void _onSliderChanged(double value) {
@@ -74,7 +75,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                   'assets/images/cctv_feed.jpg',
                   fit: BoxFit.cover,
                 ),
-                
+
                 // Overlay elements like timestamp, camera ID
                 Positioned(
                   top: 16,
@@ -92,7 +93,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
             ),
           ),
         ),
-        
+
         // Controls and Info
         Expanded(
           flex: 2,
@@ -106,7 +107,8 @@ class _CctvPlayerState extends State<CctvPlayer> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         color: Colors.red.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16),
@@ -134,7 +136,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                     ),
                   ],
                 ),
-                
+
                 // CCTV Name and Location
                 Text(
                   widget.cctv.name,
@@ -150,14 +152,15 @@ class _CctvPlayerState extends State<CctvPlayer> {
                     color: Colors.grey[600],
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Time display
                 Align(
                   alignment: Alignment.centerRight,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(16),
@@ -170,7 +173,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                     ),
                   ),
                 ),
-                
+
                 // Slider
                 SliderTheme(
                   data: SliderThemeData(
@@ -189,7 +192,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                     onChanged: _onSliderChanged,
                   ),
                 ),
-                
+
                 // Playback controls
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -206,7 +209,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                       ),
                       child: const Icon(Icons.fast_rewind),
                     ),
-                    
+
                     // Play/Pause button
                     ElevatedButton(
                       onPressed: _togglePlayPause,
@@ -219,7 +222,7 @@ class _CctvPlayerState extends State<CctvPlayer> {
                       ),
                       child: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
                     ),
-                    
+
                     // Fast forward button
                     ElevatedButton(
                       onPressed: _fastForward,

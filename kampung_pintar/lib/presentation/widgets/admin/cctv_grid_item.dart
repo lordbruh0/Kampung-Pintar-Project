@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../core/models/cctv.dart';
-import '../../../core/constants/app_colors.dart';
+import '../../../../core/models/cctv.dart';
+import '../../../../core/constants/app_colors.dart';
 
 class CctvGridItem extends StatelessWidget {
   final CCTV cctv;

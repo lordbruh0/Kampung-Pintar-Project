@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../widgets/bottom_navbar_admin.dart';
-import '../../widgets/letter_list_item.dart';
-import '../../widgets/filter_modal.dart';
-import '../../widgets/letter_detail.dart';
-import '../../widgets/rejection_form.dart';
-import '../../widgets/letter_preview.dart';
+import '../../widgets/admin/bottom_navbar_admin.dart';
+import '../../widgets/admin/letter_list_item.dart';
+import '../../widgets/admin/filter_modal.dart';
+import '../../widgets/admin/letter_detail.dart';
+import '../../widgets/admin/rejection_form.dart';
+import '../../widgets/admin/letter_preview.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/models/letter_application.dart';
 
@@ -18,16 +18,16 @@ class KelolaSuratPage extends StatefulWidget {
 class _KelolaSuratPageState extends State<KelolaSuratPage> {
   // Current view state
   int _currentView = 0; // 0: List, 1: Detail, 2: Rejection Form, 3: Preview
-  
+
   // Modal states
   bool _showFilterModal = false;
-  
+
   // Selected letter
   LetterApplication? _selectedLetter;
-  
+
   // Active filters
   final List<String> _activeFilters = ['Surat Izin', 'Surat Permohonan'];
-  
+
   // Sample letter data
   final List<LetterApplication> _letters = [
     LetterApplication(
@@ -96,7 +96,7 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
       if (_currentView > 0) {
         _currentView = _currentView - 1;
       }
-      
+
       // If going back from rejection form or preview, go to list
       if (_currentView == 0) {
         _selectedLetter = null;
@@ -120,9 +120,11 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
   void _acceptLetter() {
     if (_selectedLetter != null) {
       setState(() {
-        final index = _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
+        final index =
+            _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
         if (index != -1) {
-          _letters[index] = _letters[index].copyWith(status: LetterStatus.approved);
+          _letters[index] =
+              _letters[index].copyWith(status: LetterStatus.approved);
         }
         _showLetterPreview();
       });
@@ -132,7 +134,8 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
   void _rejectLetter(String reason) {
     if (_selectedLetter != null) {
       setState(() {
-        final index = _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
+        final index =
+            _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
         if (index != -1) {
           _letters[index] = _letters[index].copyWith(
             status: LetterStatus.rejected,
@@ -148,9 +151,11 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
   void _publishLetter() {
     if (_selectedLetter != null) {
       setState(() {
-        final index = _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
+        final index =
+            _letters.indexWhere((letter) => letter.id == _selectedLetter!.id);
         if (index != -1) {
-          _letters[index] = _letters[index].copyWith(status: LetterStatus.published);
+          _letters[index] =
+              _letters[index].copyWith(status: LetterStatus.published);
         }
         _currentView = 0;
         _selectedLetter = null;
@@ -189,7 +194,7 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
         children: [
           // Main content based on current view
           _buildMainContent(),
-          
+
           // Filter modal
           if (_showFilterModal)
             FilterModal(
@@ -202,11 +207,21 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
         currentIndex: 3,
         onTap: (index) {
           switch (index) {
-            case 0: Navigator.pushReplacementNamed(context, '/admin/home'); break;
-            case 1: Navigator.pushReplacementNamed(context, '/admin/keuangan'); break;
-            case 2: Navigator.pushReplacementNamed(context, '/admin/cctv'); break;
-            case 3: Navigator.pushReplacementNamed(context, '/admin/surat'); break;
-            case 4: Navigator.pushReplacementNamed(context, '/admin/laporan'); break;
+            case 0:
+              Navigator.pushReplacementNamed(context, '/admin/home');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/admin/keuangan');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/admin/cctv');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/admin/surat');
+              break;
+            case 4:
+              Navigator.pushReplacementNamed(context, '/admin/laporan');
+              break;
           }
         },
       ),
@@ -276,7 +291,7 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
             ),
           ),
         ),
-        
+
         // Filter chips
         if (_activeFilters.isNotEmpty)
           Padding(
@@ -319,7 +334,7 @@ class _KelolaSuratPageState extends State<KelolaSuratPage> {
               ],
             ),
           ),
-        
+
         // Letters list
         Expanded(
           child: ListView.builder(

@@ -9,7 +9,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
-      child: const SatuRTApp(),
+      child: const KampungPintAR(),
     ),
   );
 }

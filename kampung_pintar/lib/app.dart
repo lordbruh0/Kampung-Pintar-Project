@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'presentation/routes/app_routes.dart';
 
-class SatuRTApp extends StatelessWidget {
-  const SatuRTApp({super.key});
+class KampungPintAR extends StatelessWidget {
+  const KampungPintAR({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SatuRT',
+      title: 'Kampung PintAR',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
