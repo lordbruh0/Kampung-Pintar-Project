@@ -20,13 +20,16 @@ class ButtomNavBarUser extends StatelessWidget {
       unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
       elevation: 8,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.camera), label: 'Kegiatan'),
-        BottomNavigationBarItem(icon: Icon(Icons.attach_money), label: 'Iuran'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.document_scanner_rounded), label: 'Surat'),
+            icon: Icon(Icons.camera_outlined), label: 'Kegiatan'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.report), label: 'Buat Laporan'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Pribadi'),
+            icon: Icon(Icons.attach_money_outlined), label: 'Iuran'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.document_scanner_outlined), label: 'Surat'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.report_outlined), label: 'Buat Laporan'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_rounded), label: 'Pribadi'),
       ],
     );
   }

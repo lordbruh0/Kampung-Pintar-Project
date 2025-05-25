@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:saturt/providers/auth_provider.dart';
 import 'app.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Tambahkan ini!
+
   runApp(
     MultiProvider(
       providers: [

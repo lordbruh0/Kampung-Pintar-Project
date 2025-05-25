@@ -74,8 +74,8 @@ class ImageNewsCard extends StatelessWidget {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.3),
-                        Colors.black.withOpacity(0.8),
+                        Colors.black.withOpacity(0.1),
+                        Colors.black.withOpacity(0.7),
                       ],
                       stops: const [0.0, 0.5, 1.0],
                     ),
@@ -95,13 +95,13 @@ class ImageNewsCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: Colors.black,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
                               category,
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -111,13 +111,13 @@ class ImageNewsCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: Colors.black,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(
                               date,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500),
                             ),
