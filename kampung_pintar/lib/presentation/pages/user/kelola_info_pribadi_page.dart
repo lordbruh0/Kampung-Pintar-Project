@@ -15,6 +15,7 @@ class _InfoPribadiState extends State<InfoPribadi> {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Menghilangkan tombol back otomatis
         title: const Text(
           'Info Pribadi',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

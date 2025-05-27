@@ -52,6 +52,7 @@ class _InformasiKegiatanState extends State<InformasiKegiatan> {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Menghilangkan tombol back otomatis
         title: const Text(
           'Informasi Kegiatan',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

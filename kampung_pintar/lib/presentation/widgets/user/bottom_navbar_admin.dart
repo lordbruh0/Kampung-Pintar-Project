@@ -27,7 +27,7 @@ class ButtomNavBarUser extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.document_scanner_outlined), label: 'Surat'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.report_outlined), label: 'Buat Laporan'),
+            icon: Icon(Icons.report_outlined), label: 'Laporan'),
         BottomNavigationBarItem(
             icon: Icon(Icons.person_outline_rounded), label: 'Pribadi'),
       ],

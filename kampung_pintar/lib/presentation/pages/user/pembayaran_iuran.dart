@@ -16,6 +16,7 @@ class _PembayaranIuranUserState extends State<PembayaranIuranUser> {
     return Scaffold(
       backgroundColor: Color(0xFFF4F4F4),
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Menghilangkan tombol back otomatis
         title: const Text(
           'Informasi Iuran',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),

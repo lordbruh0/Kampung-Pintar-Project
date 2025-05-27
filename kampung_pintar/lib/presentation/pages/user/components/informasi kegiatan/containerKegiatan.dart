@@ -106,13 +106,17 @@ class KegiatanHariIni extends StatelessWidget {
                       // lokasi
                       Row(
                         children: [
-                          Text(
+                          Expanded(
+                          child: Text(
                             lokasi,
                             style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w400,
+                            fontSize: 12,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w400,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
                           ),
                         ],
                       ),
